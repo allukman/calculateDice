@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import id.smartech.calculatoranddiceroller.calculator.CalculatorActivity
 import id.smartech.calculatoranddiceroller.diceroller.DiceRollerActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,13 +17,11 @@ class MainActivity : AppCompatActivity() {
     fun onClick(v: View) {
         when (v?.id) {
             R.id.imageDice -> {
-                val intent = Intent(this, DiceRollerActivity::class.java)
-                startActivity(intent)
+                baseStartActivity<DiceRollerActivity>(this)
             }
 
             R.id.imageCalculator -> {
-                val intent = Intent(this, CalculatorActivity::class.java)
-                startActivity(intent)
+                baseStartActivity<CalculatorActivity>(this)
             }
         }
     }

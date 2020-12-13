@@ -13,7 +13,7 @@
         android:ellipsize="start"
         android:gravity="end"
         android:singleLine="true"
-        android:textColor="@color/numberButton"
+        android:textColor="@color/colorWhite"
         android:textSize="40sp"/>
 
     <TextView
@@ -39,7 +39,7 @@
 
             <TextView
                 android:id="@+id/tvClear"
-                style="@style/ActionButtonStyle"
+                style="@style/ClearButtonStyle"
                 android:text="CE"
                 android:onClick="onClickFunctional" />
 
@@ -183,7 +183,7 @@
                 android:id="@+id/tvBack"
                 style="@style/NumberButtonStyle"
                 android:scaleType="center"
-                android:src="@drawable/backspace"
+                android:src="@drawable/ic_backspace"
                 android:onClick="onClickFunctional"/>
 
             <TextView

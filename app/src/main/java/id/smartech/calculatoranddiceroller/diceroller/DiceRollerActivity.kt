@@ -4,10 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import id.smartech.calculatoranddiceroller.BaseActivity
 import id.smartech.calculatoranddiceroller.R
 import java.util.*
 
-class DiceRollerActivity : AppCompatActivity() {
+class DiceRollerActivity : BaseActivity() {
 
     lateinit var diceImage: ImageView
 

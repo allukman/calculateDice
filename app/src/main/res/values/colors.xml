@@ -7,4 +7,5 @@
     <color name="colorWhite">#ffffff</color>
     <color name="actionButton">#F57C00</color>
     <color name="numberButton">#455A64</color>
+    <color name="colorRed">#ff0000</color>
 </resources>

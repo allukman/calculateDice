@@ -12,90 +12,50 @@ import net.objecthunter.exp4j.ExpressionBuilder
 import java.lang.Exception
 
 class CalculatorActivity : BaseActivity() {
-
+    private lateinit var calculate: Calculator
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_calculator)
 
+        calculate = Calculator(tvExpression, tvResult)
     }
 
-    fun clearAllNum() {
-        tvExpression.text = ""
-        tvResult.text = ""
-    }
 
-    fun clearNum() {
-    val string = tvExpression.text.toString()
-    if(string.isNotEmpty()){
-        tvExpression.text = string.substring(0,string.length - 1)
-        }
-    tvResult.text = ""
-    }
-
-    fun calculate() {
-        try {
-            val expression = ExpressionBuilder(tvExpression.text.toString()).build()
-            val result = expression.evaluate()
-            val longResult = result.toLong()
-
-            if (result == longResult.toDouble()) {
-                tvResult.text = longResult.toString()
-            } else {
-                tvResult.text = result.toString()
-            }
-        } catch (e:Exception) {
-            Log.d("Exception", "message : " + e.message )
-            Toast.makeText(this, "Invalid input", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    fun appendOnExpression(string: String, canClear: Boolean) {
-        if (tvResult.text.isNotEmpty()) {
-            tvExpression.text = ""
-        }
-        if (canClear) {
-            tvResult.text = ""
-            tvExpression.append(string)
-        } else {
-            tvExpression.append(tvResult.text)
-            tvExpression.append(string)
-            tvResult.text =""
-        }
-    }
-
-//    Set On Click Listener
+//    OnClick for number
     fun onClickNumber (v: View?) {
         when (v?.id) {
-            R.id.tvOne -> appendOnExpression("1",true)
-            R.id.tvTwo -> appendOnExpression("2",true)
-            R.id.tvThree -> appendOnExpression("3",true)
-            R.id.tvFour -> appendOnExpression("4",true)
-            R.id.tvFive -> appendOnExpression("5",true)
-            R.id.tvSix -> appendOnExpression("6",true)
-            R.id.tvSeven -> appendOnExpression("7",true)
-            R.id.tvEight -> appendOnExpression("8",true)
-            R.id.tvNine -> appendOnExpression("9",true)
-            R.id.tvZero -> appendOnExpression("0",true)
+            R.id.tvOne -> calculate.appendOnExpression("1",true)
+            R.id.tvTwo -> calculate.appendOnExpression("2",true)
+            R.id.tvThree -> calculate.appendOnExpression("3",true)
+            R.id.tvFour -> calculate.appendOnExpression("4",true)
+            R.id.tvFive -> calculate.appendOnExpression("5",true)
+            R.id.tvSix -> calculate.appendOnExpression("6",true)
+            R.id.tvSeven -> calculate.appendOnExpression("7",true)
+            R.id.tvEight -> calculate.appendOnExpression("8",true)
+            R.id.tvNine -> calculate.appendOnExpression("9",true)
+            R.id.tvZero -> calculate.appendOnExpression("0",true)
         }
     }
 
+//    OnClick for Operation
     fun onClickOperation (v: View?) {
         when (v?.id) {
-            R.id.tvPlus -> appendOnExpression("+",false)
-            R.id.tvMinus -> appendOnExpression("-",false)
-            R.id.tvMul -> appendOnExpression("*",false)
-            R.id.tvDivide -> appendOnExpression("/",false)
+            R.id.tvPlus -> calculate.appendOnExpression("+",false)
+            R.id.tvMinus -> calculate.appendOnExpression("-",false)
+            R.id.tvMul -> calculate.appendOnExpression("*",false)
+            R.id.tvDivide -> calculate.appendOnExpression("/",false)
         }
     }
 
+//    OnClick for Functional
     fun onClickFunctional (v: View?) {
         when (v?.id) {
-            R.id.tvDot -> appendOnExpression(".",true)
-            R.id.tvOpen -> appendOnExpression("(",false)
-            R.id.tvClose -> appendOnExpression(")",false)
-            R.id.tvBack -> clearNum()
-            R.id.tvClear -> clearAllNum()
-            R.id.tvEquals -> calculate()
+            R.id.tvDot -> calculate.appendOnExpression(".",true)
+            R.id.tvOpen -> calculate.appendOnExpression("(",false)
+            R.id.tvClose -> calculate.appendOnExpression(")",false)
+            R.id.tvBack -> calculate.clearNum()
+            R.id.tvClear -> calculate.clearAllNum()
+            R.id.tvEquals -> calculate.calculate()
         }
     }
 }

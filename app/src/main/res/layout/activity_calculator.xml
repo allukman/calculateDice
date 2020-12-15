@@ -188,7 +188,7 @@
 
             <TextView
                 android:id="@+id/tvEquals"
-                style="@style/ActionButtonStyle"
+                style="@style/EqualButtonStyle"
                 android:text="="
                 android:onClick="onClickFunctional"/>
 
